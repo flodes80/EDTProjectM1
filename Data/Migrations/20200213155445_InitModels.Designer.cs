@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EDTProjectM1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200213132835_InitModels")]
+    [Migration("20200213155445_InitModels")]
     partial class InitModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,134 @@ namespace EDTProjectM1.Data.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EDTProjectM1.Models.Batiment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NomBatiment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Batiments");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Groupe", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NomGroupe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UENumero")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UENumero");
+
+                    b.ToTable("Groupes");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Salle", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BatimentID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NomSalle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("BatimentID");
+
+                    b.ToTable("Salles");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Seance", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Duree")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GroupeID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SalleID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeSeanceID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UENumero")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("GroupeID");
+
+                    b.HasIndex("SalleID");
+
+                    b.HasIndex("TypeSeanceID");
+
+                    b.HasIndex("UENumero");
+
+                    b.ToTable("Seances");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.TypeSeance", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Intitule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("TypesSeance");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.UE", b =>
+                {
+                    b.Property<int>("Numero")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Intitule")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Numero");
+
+                    b.ToTable("UE");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -219,6 +347,47 @@ namespace EDTProjectM1.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Groupe", b =>
+                {
+                    b.HasOne("EDTProjectM1.Models.UE", "UE")
+                        .WithMany()
+                        .HasForeignKey("UENumero")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Salle", b =>
+                {
+                    b.HasOne("EDTProjectM1.Models.Batiment", "Batiment")
+                        .WithMany("Salles")
+                        .HasForeignKey("BatimentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EDTProjectM1.Models.Seance", b =>
+                {
+                    b.HasOne("EDTProjectM1.Models.Groupe", "Groupe")
+                        .WithMany("Seances")
+                        .HasForeignKey("GroupeID");
+
+                    b.HasOne("EDTProjectM1.Models.Salle", null)
+                        .WithMany("Seances")
+                        .HasForeignKey("SalleID");
+
+                    b.HasOne("EDTProjectM1.Models.TypeSeance", "TypeSeance")
+                        .WithMany()
+                        .HasForeignKey("TypeSeanceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EDTProjectM1.Models.UE", "UE")
+                        .WithMany("Seances")
+                        .HasForeignKey("UENumero")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

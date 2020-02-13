@@ -1,0 +1,36 @@
+﻿@page
+@model EDTProjectM1.IndexUEs
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UE[0].Intitule)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.UE) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Intitule)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Numero">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Numero">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Numero">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
