@@ -12,11 +12,13 @@ namespace EDTProjectM1.Models
         public int ID { get; set; }
 
         // Nom du groupe
+        [Display(Name = "Nom du groupe")]
         [Required]
         public string NomGroupe { get; set; }
 
         // UE associée
         [Required]
+        public int? UEId { get; set; }
         public UE UE { get; set; }
 
         // Séances associées

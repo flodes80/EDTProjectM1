@@ -23,7 +23,7 @@ namespace EDTProjectM1
 
         public async Task OnGetAsync()
         {
-            Salle = await _context.Salles.ToListAsync();
+            Salle = await _context.Salles.Include(s => s.Batiment).ToListAsync();
         }
     }
 }

@@ -9,10 +9,15 @@ namespace EDTProjectM1.Models
     public class UE
     {
         // Clé primaire
-        [Key]
+        public int ID { get; set; }
+
+        // Numéro de l'UE
+        [Display(Name = "Numéro de l'UE")]
+        [Required]
         public int Numero { get; set; }
 
         // Intitulé de l'UE
+        [Display(Name = "Intitulé de l'UE")]
         [Required]
         public string Intitule { get; set; }
 

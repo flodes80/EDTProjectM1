@@ -14,12 +14,18 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <!--Input Nom de la salle-->
                 <label asp-for="Salle.NomSalle" class="control-label"></label>
                 <input asp-for="Salle.NomSalle" class="form-control" />
                 <span asp-validation-for="Salle.NomSalle" class="text-danger"></span>
+
+                <!--Input Selection bâtiment-->
+                <label asp-for="Salle.Batiment.NomBatiment" class="control-label"></label>
+                <select asp-for="Salle.BatimentId" class="form-control" asp-items="ViewBag.Batiments"></select>
+                <span asp-validation-for="Salle.BatimentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Créer Salle" class="btn btn-primary" />
             </div>
         </form>
     </div>

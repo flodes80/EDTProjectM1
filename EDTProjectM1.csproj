@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-EDTProjectM1-E840D053-29EB-4737-A843-DB5A95FB5D20</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20200213155445_InitModels.cs" />
+    <Compile Remove="Data\Migrations\20200213155445_InitModels.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.cs" />
+    <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />

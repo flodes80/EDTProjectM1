@@ -12,6 +12,7 @@ namespace EDTProjectM1.Models
         public int ID { get; set; }
 
         // Nom du bâtiment
+        [Display(Name = "Nom du bâtiment")]
         [Required]
         public string NomBatiment { get; set; }
 

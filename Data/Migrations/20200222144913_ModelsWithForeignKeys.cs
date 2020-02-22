@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EDTProjectM1.Data.Migrations
 {
-    public partial class InitModels : Migration
+    public partial class ModelsWithForeignKeys : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,13 +37,14 @@ namespace EDTProjectM1.Data.Migrations
                 name: "UE",
                 columns: table => new
                 {
-                    Numero = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Numero = table.Column<int>(nullable: false),
                     Intitule = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UE", x => x.Numero);
+                    table.PrimaryKey("PK_UE", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,14 +54,14 @@ namespace EDTProjectM1.Data.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomSalle = table.Column<string>(nullable: false),
-                    BatimentID = table.Column<int>(nullable: false)
+                    BatimentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Salles", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Salles_Batiments_BatimentID",
-                        column: x => x.BatimentID,
+                        name: "FK_Salles_Batiments_BatimentId",
+                        column: x => x.BatimentId,
                         principalTable: "Batiments",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
@@ -73,16 +74,16 @@ namespace EDTProjectM1.Data.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NomGroupe = table.Column<string>(nullable: false),
-                    UENumero = table.Column<int>(nullable: false)
+                    UEId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Groupes", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Groupes_UE_UENumero",
-                        column: x => x.UENumero,
+                        name: "FK_Groupes_UE_UEId",
+                        column: x => x.UEId,
                         principalTable: "UE",
-                        principalColumn: "Numero",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -92,9 +93,9 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TypeSeanceID = table.Column<int>(nullable: false),
-                    GroupeID = table.Column<int>(nullable: true),
-                    UENumero = table.Column<int>(nullable: false),
+                    TypeSeanceId = table.Column<int>(nullable: false),
+                    GroupeId = table.Column<int>(nullable: true),
+                    UEId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Duree = table.Column<int>(nullable: false),
                     SalleID = table.Column<int>(nullable: true)
@@ -103,8 +104,8 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     table.PrimaryKey("PK_Seances", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Seances_Groupes_GroupeID",
-                        column: x => x.GroupeID,
+                        name: "FK_Seances_Groupes_GroupeId",
+                        column: x => x.GroupeId,
                         principalTable: "Groupes",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
@@ -115,33 +116,33 @@ namespace EDTProjectM1.Data.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Seances_TypesSeance_TypeSeanceID",
-                        column: x => x.TypeSeanceID,
+                        name: "FK_Seances_TypesSeance_TypeSeanceId",
+                        column: x => x.TypeSeanceId,
                         principalTable: "TypesSeance",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Seances_UE_UENumero",
-                        column: x => x.UENumero,
+                        name: "FK_Seances_UE_UEId",
+                        column: x => x.UEId,
                         principalTable: "UE",
-                        principalColumn: "Numero",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Groupes_UENumero",
+                name: "IX_Groupes_UEId",
                 table: "Groupes",
-                column: "UENumero");
+                column: "UEId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Salles_BatimentID",
+                name: "IX_Salles_BatimentId",
                 table: "Salles",
-                column: "BatimentID");
+                column: "BatimentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seances_GroupeID",
+                name: "IX_Seances_GroupeId",
                 table: "Seances",
-                column: "GroupeID");
+                column: "GroupeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seances_SalleID",
@@ -149,14 +150,14 @@ namespace EDTProjectM1.Data.Migrations
                 column: "SalleID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seances_TypeSeanceID",
+                name: "IX_Seances_TypeSeanceId",
                 table: "Seances",
-                column: "TypeSeanceID");
+                column: "TypeSeanceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seances_UENumero",
+                name: "IX_Seances_UEId",
                 table: "Seances",
-                column: "UENumero");
+                column: "UEId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Modifier</h1>
 
 <h4>Salle</h4>
 <hr />
@@ -15,19 +15,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Salle.ID" />
             <div class="form-group">
+                <!--Input Nom de la salle-->
                 <label asp-for="Salle.NomSalle" class="control-label"></label>
                 <input asp-for="Salle.NomSalle" class="form-control" />
                 <span asp-validation-for="Salle.NomSalle" class="text-danger"></span>
+
+                <!--Input Selection bâtiment-->
+                <label asp-for="Salle.Batiment.NomBatiment" class="control-label"></label>
+                <select asp-for="Salle.BatimentId" class="form-control" asp-items="ViewBag.Batiments"></select>
+                <span asp-validation-for="Salle.BatimentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Retourner à la liste des Salles</a>
 </div>
 
 @section Scripts {

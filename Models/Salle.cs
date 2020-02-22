@@ -10,13 +10,16 @@ namespace EDTProjectM1.Models
     {
         // Clé primaire
         public int ID { get; set; }
-        
+
         // Nom de la salle
+        [Display(Name = "Nom de la salle")]
         [Required]
         public string NomSalle { get; set;}
 
+
         // Bâtiment associé
         [Required]
+        public int? BatimentId { get; set; }
         public Batiment Batiment { get; set; }
 
         // Seances prévues dans la salle

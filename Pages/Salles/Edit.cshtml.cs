@@ -25,12 +25,14 @@ namespace EDTProjectM1
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ViewData["Batiments"] = new SelectList(_context.Set<Batiment>(), "ID", "NomBatiment");
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            Salle = await _context.Salles.FirstOrDefaultAsync(m => m.ID == id);
+            Salle = await _context.Salles.Include(s => s.Batiment).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Salle == null)
             {

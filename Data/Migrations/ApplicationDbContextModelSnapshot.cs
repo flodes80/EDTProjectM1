@@ -46,12 +46,13 @@ namespace EDTProjectM1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UENumero")
+                    b.Property<int?>("UEId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("UENumero");
+                    b.HasIndex("UEId");
 
                     b.ToTable("Groupes");
                 });
@@ -63,7 +64,8 @@ namespace EDTProjectM1.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BatimentID")
+                    b.Property<int?>("BatimentId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("NomSalle")
@@ -72,7 +74,7 @@ namespace EDTProjectM1.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BatimentID");
+                    b.HasIndex("BatimentId");
 
                     b.ToTable("Salles");
                 });
@@ -90,27 +92,29 @@ namespace EDTProjectM1.Data.Migrations
                     b.Property<int>("Duree")
                         .HasColumnType("int");
 
-                    b.Property<int?>("GroupeID")
+                    b.Property<int?>("GroupeId")
                         .HasColumnType("int");
 
                     b.Property<int?>("SalleID")
                         .HasColumnType("int");
 
-                    b.Property<int>("TypeSeanceID")
+                    b.Property<int?>("TypeSeanceId")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int>("UENumero")
+                    b.Property<int?>("UEId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("GroupeID");
+                    b.HasIndex("GroupeId");
 
                     b.HasIndex("SalleID");
 
-                    b.HasIndex("TypeSeanceID");
+                    b.HasIndex("TypeSeanceId");
 
-                    b.HasIndex("UENumero");
+                    b.HasIndex("UEId");
 
                     b.ToTable("Seances");
                 });
@@ -133,7 +137,7 @@ namespace EDTProjectM1.Data.Migrations
 
             modelBuilder.Entity("EDTProjectM1.Models.UE", b =>
                 {
-                    b.Property<int>("Numero")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -142,7 +146,10 @@ namespace EDTProjectM1.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Numero");
+                    b.Property<int>("Numero")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
 
                     b.ToTable("UE");
                 });
@@ -351,7 +358,7 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     b.HasOne("EDTProjectM1.Models.UE", "UE")
                         .WithMany()
-                        .HasForeignKey("UENumero")
+                        .HasForeignKey("UEId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -360,7 +367,7 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     b.HasOne("EDTProjectM1.Models.Batiment", "Batiment")
                         .WithMany("Salles")
-                        .HasForeignKey("BatimentID")
+                        .HasForeignKey("BatimentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -369,7 +376,7 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     b.HasOne("EDTProjectM1.Models.Groupe", "Groupe")
                         .WithMany("Seances")
-                        .HasForeignKey("GroupeID");
+                        .HasForeignKey("GroupeId");
 
                     b.HasOne("EDTProjectM1.Models.Salle", null)
                         .WithMany("Seances")
@@ -377,13 +384,13 @@ namespace EDTProjectM1.Data.Migrations
 
                     b.HasOne("EDTProjectM1.Models.TypeSeance", "TypeSeance")
                         .WithMany()
-                        .HasForeignKey("TypeSeanceID")
+                        .HasForeignKey("TypeSeanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EDTProjectM1.Models.UE", "UE")
                         .WithMany("Seances")
-                        .HasForeignKey("UENumero")
+                        .HasForeignKey("UEId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
