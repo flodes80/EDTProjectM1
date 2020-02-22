@@ -25,12 +25,13 @@ namespace EDTProjectM1
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ViewData["UEs"] = new SelectList(_context.Set<UE>(), "ID", "NomComplet");
             if (id == null)
             {
                 return NotFound();
             }
 
-            Groupe = await _context.Groupes.FirstOrDefaultAsync(m => m.ID == id);
+            Groupe = await _context.Groupes.Include(g => g.UE).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Groupe == null)
             {

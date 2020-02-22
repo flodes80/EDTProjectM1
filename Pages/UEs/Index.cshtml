@@ -5,16 +5,16 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Liste des UEs</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Créer nouvelle UE</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UE[0].Intitule)
+                @Html.DisplayNameFor(model => model.UE[0].NomComplet)
             </th>
             <th></th>
         </tr>
@@ -23,12 +23,12 @@
 @foreach (var item in Model.UE) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Intitule)
+                @Html.DisplayFor(modelItem => item.NomComplet)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Numero">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Numero">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Numero">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Modifier</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Détail</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Supprimer</a>
             </td>
         </tr>
 }

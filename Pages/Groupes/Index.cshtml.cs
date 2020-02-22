@@ -23,7 +23,7 @@ namespace EDTProjectM1
 
         public async Task OnGetAsync()
         {
-            Groupe = await _context.Groupes.ToListAsync();
+            Groupe = await _context.Groupes.Include(g => g.UE).ToListAsync();
         }
     }
 }

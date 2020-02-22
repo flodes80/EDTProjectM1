@@ -10,6 +10,8 @@
     <Compile Remove="Data\Migrations\20200213155445_InitModels.Designer.cs" />
     <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.cs" />
     <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200222165726_AddUniqueUENum.cs" />
+    <Compile Remove="Data\Migrations\20200222165726_AddUniqueUENum.Designer.cs" />
   </ItemGroup>
 
 

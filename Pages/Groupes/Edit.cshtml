@@ -5,7 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Modifier groupe</h1>
 
 <h4>Groupe</h4>
 <hr />
@@ -15,19 +15,25 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Groupe.ID" />
             <div class="form-group">
+                <!--Input nom du groupe -->
                 <label asp-for="Groupe.NomGroupe" class="control-label"></label>
                 <input asp-for="Groupe.NomGroupe" class="form-control" />
                 <span asp-validation-for="Groupe.NomGroupe" class="text-danger"></span>
+
+                <!--Select de l'UE d'appartenance -->
+                <label asp-for="Groupe.UE.NomComplet" class="control-label"></label>
+                <select asp-for="Groupe.UEId" class="form-control" asp-items="ViewBag.UEs"></select>
+                <span asp-validation-for="Groupe.UEId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Sauvegarder" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Retourner à la liste des groupes</a>
 </div>
 
 @section Scripts {

@@ -21,6 +21,7 @@ namespace EDTProjectM1
 
         public IActionResult OnGet()
         {
+            ViewData["UEs"] = new SelectList(_context.Set<UE>(), "ID", "NomComplet");
             return Page();
         }
 

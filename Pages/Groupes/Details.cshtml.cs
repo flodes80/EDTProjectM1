@@ -28,7 +28,7 @@ namespace EDTProjectM1
                 return NotFound();
             }
 
-            Groupe = await _context.Groupes.FirstOrDefaultAsync(m => m.ID == id);
+            Groupe = await _context.Groupes.Include(g => g.UE).FirstOrDefaultAsync(m => m.ID == id);
 
             if (Groupe == null)
             {
