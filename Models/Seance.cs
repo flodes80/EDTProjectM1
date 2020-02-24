@@ -63,7 +63,7 @@ namespace EDTProjectM1.Models
         {
             get
             {
-                return UE.NomComplet + "\\n" + Groupe.NomGroupe + "\\n" + Salle.NomSalleBatiment;
+                return TypeSeance.Intitule + "\\n" + UE.NomComplet + "\\n" + Groupe.NomGroupe + "\\n" + Salle.NomSalleBatiment;
             }
         }
 

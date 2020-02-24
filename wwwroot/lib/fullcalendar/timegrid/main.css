@@ -200,11 +200,15 @@ be a descendant of the grid when it is being dragged.
 
 .fc-time-grid-event .fc-time,
 .fc-time-grid-event .fc-title {
+  vertical-align: middle;
+  text-align: center;
   padding: 0 1px;
 }
 
 .fc-time-grid-event .fc-time {
   font-size: 0.85em;
+  vertical-align: middle;
+  text-align: center;
   white-space: nowrap;
 }
 
