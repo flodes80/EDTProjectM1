@@ -43,5 +43,29 @@ namespace EDTProjectM1.Models
         [Required]
         public int Duree { get; set; }
 
+        public string StartDateFullCalendarFormat
+        {
+            get
+            {
+                return Date.ToString("yyyy-MM-ddTHH:mm:ss");
+            }
+        }
+
+        public string EndDateFullCalendarFormat
+        {
+            get
+            {
+                return Date.AddHours(Duree).ToString("yyyy-MM-ddTHH:mm:ss");
+            }
+        }
+
+        public string TitleFullCalendarFormat
+        {
+            get
+            {
+                return UE.NomComplet + "\\n" + Groupe.NomGroupe + "\\n" + Salle.NomSalleBatiment;
+            }
+        }
+
     }
 }

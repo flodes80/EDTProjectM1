@@ -4,12 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
-    <div id='calendar'></div>
-</div>
-
-@section Scripts{
+@section Header{
     <link href='~/lib/fullcalendar/core/main.css' rel='stylesheet' />
     <link href='~/lib/fullcalendar/daygrid/main.css' rel='stylesheet' />
     <link href='~/lib/fullcalendar/timegrid/main.css' rel='stylesheet' />
@@ -17,9 +12,9 @@
     <script src='~/lib/fullcalendar/core/main.js'></script>
     <script src='~/lib/fullcalendar/daygrid/main.js'></script>
     <script src='~/lib/fullcalendar/timegrid/main.js'></script>
+    <script src='~/lib/fullcalendar/moment/main.js'></script>
 
     <script>
-
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
@@ -27,25 +22,38 @@
                 plugins: ['timeGrid'],
                 defaultView: 'timeGridWeek',
                 locale: 'fr',
+                contentHeight: "auto",
+                height: "auto",
                 firstDay: 1,
                 allDaySlot: false,
-                events: [
-                    @foreach (var item in Model.Seances)
-                    {
-                        <text>
-                            {
-                                title: "@item.UE.NomComplet",
-                                start: '@item.Date.ToString("yyyy-MM-dd")'
-                            },
-                        </text>
-                    }
-                ]
+                minTime: "08:00:00",
+                maxTime: "21:00:00",
+                weekends: false,
+                nowIndicator: true,
             });
 
-            calendar.render();
-
-            
+            loadAll(calendar);
         });
+
+        function loadAll(calendar) {
+            @foreach (var item in Model.Seances)
+            {
+                <text>
+                    calendar.addEvent({
+                        title: '@Html.Raw(@item.TitleFullCalendarFormat)',
+                        start: '@item.StartDateFullCalendarFormat',
+                        end: '@item.EndDateFullCalendarFormat'
+                    });
+                </text>
+            }
+            calendar.render();
+        }
 
     </script>
 }
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
+</div>
+
+<div class="container" id='calendar'></div>
