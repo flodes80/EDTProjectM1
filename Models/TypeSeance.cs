@@ -13,6 +13,7 @@ namespace EDTProjectM1.Models
 
         // Intitulé du type de séance.
         // Soit CM, TD ou TP
+        [Display(Name = "Type séance")]
         [Required]
         public String Intitule { get; set; }
     }

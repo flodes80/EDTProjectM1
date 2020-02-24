@@ -5,19 +5,31 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Liste des séances</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Créer nouvelle séance</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Seance[0].UE.NomComplet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].TypeSeance.Intitule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].Groupe.NomGroupe)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Seance[0].Date)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Seance[0].Duree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Seance[0].Salle.NomSalleBatiment)
             </th>
             <th></th>
         </tr>
@@ -26,15 +38,27 @@
 @foreach (var item in Model.Seance) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.UE.NomComplet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TypeSeance.Intitule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Groupe.NomGroupe)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duree)
+                @Html.DisplayFor(modelItem => item.Duree)h
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                @Html.DisplayFor(modelItem => item.Salle.NomSalleBatiment)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Modifier séance</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Détail</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Supprimer</a>
             </td>
         </tr>
 }

@@ -5,6 +5,47 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
+    <div id='calendar'></div>
 </div>
+
+@section Scripts{
+    <link href='~/lib/fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='~/lib/fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='~/lib/fullcalendar/timegrid/main.css' rel='stylesheet' />
+
+    <script src='~/lib/fullcalendar/core/main.js'></script>
+    <script src='~/lib/fullcalendar/daygrid/main.js'></script>
+    <script src='~/lib/fullcalendar/timegrid/main.js'></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['timeGrid'],
+                defaultView: 'timeGridWeek',
+                locale: 'fr',
+                firstDay: 1,
+                allDaySlot: false,
+                events: [
+                    @foreach (var item in Model.Seances)
+                    {
+                        <text>
+                            {
+                                title: "@item.UE.NomComplet",
+                                start: '@item.Date.ToString("yyyy-MM-dd")'
+                            },
+                        </text>
+                    }
+                ]
+            });
+
+            calendar.render();
+
+            
+        });
+
+    </script>
+}

@@ -10,18 +10,26 @@
     <Compile Remove="Data\Migrations\20200213155445_InitModels.Designer.cs" />
     <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.cs" />
     <Compile Remove="Data\Migrations\20200222143131_AjoutForeignKeys.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200222144913_ModelsWithForeignKeys.cs" />
+    <Compile Remove="Data\Migrations\20200222144913_ModelsWithForeignKeys.Designer.cs" />
     <Compile Remove="Data\Migrations\20200222165726_AddUniqueUENum.cs" />
     <Compile Remove="Data\Migrations\20200222165726_AddUniqueUENum.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200222174454_AddSalleSeance.cs" />
+    <Compile Remove="Data\Migrations\20200222174454_AddSalleSeance.Designer.cs" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
   </ItemGroup>
 

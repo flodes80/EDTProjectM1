@@ -17,8 +17,14 @@ namespace EDTProjectM1.Models
         public TypeSeance TypeSeance { get; set; }
 
         // Groupe participant
+        [Required]
         public int? GroupeId { get; set; }
         public Groupe Groupe { get; set; }
+
+        // Salle de la séance
+        [Required]
+        public int? SalleId { get; set; }
+        public Salle Salle { get; set; }
 
         // UE appartenance
         [Required]
@@ -27,11 +33,13 @@ namespace EDTProjectM1.Models
 
         // Date de la séance
         [Display(Name = "Date de la séance")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
         [Required]
         public DateTime Date { get; set; }
 
         // Durée de la séance
         [Display(Name = "Durée séance")]
+        [Range(1, 4, ErrorMessage = "La durée d'une séance doit être comprise entre 1 et 4 heures")]
         [Required]
         public int Duree { get; set; }
 

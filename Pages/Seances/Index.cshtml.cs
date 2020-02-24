@@ -23,7 +23,13 @@ namespace EDTProjectM1
 
         public async Task OnGetAsync()
         {
-            Seance = await _context.Seances.ToListAsync();
+            Seance = await _context.Seances
+                .Include(s => s.Groupe)
+                .Include(s => s.Salle)
+                .Include(s => s.Salle.Batiment)
+                .Include(s => s.TypeSeance)
+                .Include(s => s.UE)
+                .ToListAsync();
         }
     }
 }

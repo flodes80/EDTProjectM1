@@ -24,5 +24,14 @@ namespace EDTProjectM1.Models
 
         // Seances prévues dans la salle
         public ICollection<Seance> Seances { get; set; }
+
+        [Display(Name = "Nom de la salle")]
+        public String NomSalleBatiment
+        {
+            get
+            {
+                return NomSalle + " - " + ((Batiment != null  && Batiment.NomBatiment != null) ? Batiment.NomBatiment : "");
+            }
+        }
     }
 }

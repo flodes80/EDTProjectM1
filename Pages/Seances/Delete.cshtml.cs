@@ -29,7 +29,11 @@ namespace EDTProjectM1
                 return NotFound();
             }
 
-            Seance = await _context.Seances.FirstOrDefaultAsync(m => m.ID == id);
+            Seance = await _context.Seances.Include(s => s.Groupe)
+                .Include(s => s.Salle)
+                .Include(s => s.TypeSeance)
+                .Include(s => s.UE)
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (Seance == null)
             {

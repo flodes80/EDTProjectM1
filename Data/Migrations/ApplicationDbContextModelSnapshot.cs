@@ -15,7 +15,7 @@ namespace EDTProjectM1.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.1")
+                .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -93,9 +93,11 @@ namespace EDTProjectM1.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("GroupeId")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalleID")
+                    b.Property<int?>("SalleId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("TypeSeanceId")
@@ -110,7 +112,7 @@ namespace EDTProjectM1.Data.Migrations
 
                     b.HasIndex("GroupeId");
 
-                    b.HasIndex("SalleID");
+                    b.HasIndex("SalleId");
 
                     b.HasIndex("TypeSeanceId");
 
@@ -376,11 +378,15 @@ namespace EDTProjectM1.Data.Migrations
                 {
                     b.HasOne("EDTProjectM1.Models.Groupe", "Groupe")
                         .WithMany("Seances")
-                        .HasForeignKey("GroupeId");
+                        .HasForeignKey("GroupeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("EDTProjectM1.Models.Salle", null)
+                    b.HasOne("EDTProjectM1.Models.Salle", "Salle")
                         .WithMany("Seances")
-                        .HasForeignKey("SalleID");
+                        .HasForeignKey("SalleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EDTProjectM1.Models.TypeSeance", "TypeSeance")
                         .WithMany()
