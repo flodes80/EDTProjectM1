@@ -33,9 +33,17 @@ namespace EDTProjectM1.Models
 
         // Date de la séance
         [Display(Name = "Date de la séance")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:g}")]
         [Required]
-        public DateTime Date { get; set; }
+        public DateTime DateDebut { get; set; }
+
+        // Date de fin la séance
+        public DateTime DateFin 
+        {
+            get
+            {
+                return DateDebut.AddHours(Duree);
+            }
+        }
 
         // Durée de la séance
         [Display(Name = "Durée séance")]
@@ -43,11 +51,12 @@ namespace EDTProjectM1.Models
         [Required]
         public int Duree { get; set; }
 
+        // Strings pour affichage FullCalendar
         public string StartDateFullCalendarFormat
         {
             get
             {
-                return Date.ToString("yyyy-MM-ddTHH:mm:ss");
+                return DateDebut.ToString("yyyy-MM-ddTHH:mm:ss");
             }
         }
 
@@ -55,7 +64,7 @@ namespace EDTProjectM1.Models
         {
             get
             {
-                return Date.AddHours(Duree).ToString("yyyy-MM-ddTHH:mm:ss");
+                return DateFin.ToString("yyyy-MM-ddTHH:mm:ss");
             }
         }
 
@@ -63,9 +72,11 @@ namespace EDTProjectM1.Models
         {
             get
             {
-                return TypeSeance.Intitule + "\\n" + UE.NomComplet + "\\n" + Groupe.NomGroupe + "\\n" + Salle.NomSalleBatiment;
+                if (TypeSeance != null && UE != null && Groupe != null && Salle != null)
+                    return TypeSeance.Intitule + "\\n" + UE.NomComplet + "\\n" + Groupe.NomGroupe + "\\n" + Salle.NomSalleBatiment;
+                else
+                    return "Erreur seance";
             }
         }
-
     }
 }

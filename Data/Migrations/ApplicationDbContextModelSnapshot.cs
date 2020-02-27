@@ -86,7 +86,7 @@ namespace EDTProjectM1.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DateDebut")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Duree")

@@ -16,6 +16,10 @@
     <Compile Remove="Data\Migrations\20200222165726_AddUniqueUENum.Designer.cs" />
     <Compile Remove="Data\Migrations\20200222174454_AddSalleSeance.cs" />
     <Compile Remove="Data\Migrations\20200222174454_AddSalleSeance.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200222174906_ModelsInit.cs" />
+    <Compile Remove="Data\Migrations\20200222174906_ModelsInit.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200225195352_RenameDateDebutSeance.cs" />
+    <Compile Remove="Data\Migrations\20200225195352_RenameDateDebutSeance.Designer.cs" />
   </ItemGroup>
 
 

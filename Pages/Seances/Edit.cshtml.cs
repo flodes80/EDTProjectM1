@@ -11,17 +11,11 @@ using EDTProjectM1.Models;
 
 namespace EDTProjectM1
 {
-    public class EditSeance : PageModel
+    public class EditSeance : SeanceEditModel
     {
-        private readonly EDTProjectM1.Data.ApplicationDbContext _context;
-
-        public EditSeance(EDTProjectM1.Data.ApplicationDbContext context)
+        public EditSeance(EDTProjectM1.Data.ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
-
-        [BindProperty]
-        public Seance Seance { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -36,16 +30,20 @@ namespace EDTProjectM1
             {
                 return NotFound();
             }
+
+            // Chargement des ViewBags (UE, Salles etc ..)
+            CreateViewBags();
             return Page();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && !IsSeanceValid())
             {
-                return Page();
+                if (Seance != null)
+                    return await OnGetAsync(Seance.ID);
+                else
+                    return Page();
             }
 
             _context.Attach(Seance).State = EntityState.Modified;

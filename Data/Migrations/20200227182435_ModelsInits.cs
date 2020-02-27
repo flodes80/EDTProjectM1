@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EDTProjectM1.Data.Migrations
 {
-    public partial class ModelsInit : Migration
+    public partial class ModelsInits : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -97,7 +97,7 @@ namespace EDTProjectM1.Data.Migrations
                     GroupeId = table.Column<int>(nullable: false),
                     SalleId = table.Column<int>(nullable: false),
                     UEId = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
+                    DateDebut = table.Column<DateTime>(nullable: false),
                     Duree = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -108,19 +108,19 @@ namespace EDTProjectM1.Data.Migrations
                         column: x => x.GroupeId,
                         principalTable: "Groupes",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Seances_Salles_SalleId",
                         column: x => x.SalleId,
                         principalTable: "Salles",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Seances_TypesSeance_TypeSeanceId",
                         column: x => x.TypeSeanceId,
                         principalTable: "TypesSeance",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Seances_UE_UEId",
                         column: x => x.UEId,
