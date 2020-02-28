@@ -29,21 +29,23 @@
                 minTime: "08:00:00",
                 maxTime: "21:00:00",
                 weekends: false,
-                nowIndicator: true,
+                nowIndicator: true
             });
 
             loadAll(calendar);
         });
 
         function loadAll(calendar) {
+            var currentUrl = window.location.href;
             @foreach (var item in Model.Seances)
             {
                 <text>
                     calendar.addEvent({
                         title: '@Html.Raw(@item.TitleFullCalendarFormat)',
                         start: '@item.StartDateFullCalendarFormat',
-                        end: '@item.EndDateFullCalendarFormat'
-                    });
+                        end: '@item.EndDateFullCalendarFormat',
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire")) { <text> url: currentUrl + "Seances/Edit?id=" + @item.ID </text>}
+                        });
                 </text>
             }
             calendar.render();
