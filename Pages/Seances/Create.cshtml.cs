@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EDTProjectM1.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EDTProjectM1
 {
+    [Authorize(Roles = "Gestionnaire")]
     public class CreateSeance : SeanceEditModel
     {
         public CreateSeance(Data.ApplicationDbContext context) : base(context)

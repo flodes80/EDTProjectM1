@@ -30,13 +30,21 @@ namespace EDTProjectM1
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAuthorization(config =>
+            {
+                config.AddPolicy("RequireGestionnaireRole",
+                    policy => policy.RequireRole("Gestionnaire"));
+            });
+
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider serviceProvider, UserManager<IdentityUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -62,6 +70,38 @@ namespace EDTProjectM1
             {
                 endpoints.MapRazorPages();
             });
+
+            CreateRolesAsync(serviceProvider).Wait();
+            CreateSuperUser(userManager).Wait();
         }
+
+        private async Task CreateSuperUser(UserManager<IdentityUser> userManager)
+        {
+            if(await userManager.FindByNameAsync("gestionnaire@edtproject.fr") == null)
+            {
+                var gestionnaire = new IdentityUser { UserName = "gestionnaire@edtproject.fr", Email = "gestionnaire@edtproject.fr" };
+                await userManager.CreateAsync(gestionnaire, "Gestionnaire1234!");
+            
+                var token = await userManager.GenerateEmailConfirmationTokenAsync(gestionnaire);
+                await userManager.ConfirmEmailAsync(gestionnaire, token);
+                await userManager.AddToRoleAsync(gestionnaire, "Gestionnaire");
+            }
+        }
+
+        private async Task CreateRolesAsync(IServiceProvider serviceProvider)
+        {
+            //adding custom roles
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            string roleName = "Gestionnaire";
+            IdentityResult roleResult;
+
+            //creating the roles and seeding them to the database
+            var roleExist = await RoleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+            {
+                roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+            }
+        }
+
     }
 }

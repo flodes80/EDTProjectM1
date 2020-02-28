@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EDTProjectM1.Data;
 using EDTProjectM1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EDTProjectM1
 {
+    [Authorize(Roles = "Gestionnaire")]
     public class EditSeance : SeanceEditModel
     {
         public EditSeance(EDTProjectM1.Data.ApplicationDbContext context) : base(context)
