@@ -45,14 +45,14 @@ namespace EDTProjectM1
              * 1er check:   Existance séance pour le même groupe au même moment
              * 2ème check:  Existance séance dans la même salle au même moment
              * */
-             foreach(Seance s in _context.Seances)
+            foreach (Seance s in _context.Seances)
             {
-                if (s.GroupeId == Seance.GroupeId && ((Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin)))
+                if (s.ID != Seance.ID && s.GroupeId == Seance.GroupeId && ((Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin)))
                 {
                     ErrorMessage = "Une séance pour un même groupe est déjà prévue à ce créneau horaire";
                     return false;
                 }
-                else if (s.SalleId == Seance.SalleId && (Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin))
+                else if (s.ID != Seance.ID && s.SalleId == Seance.SalleId && ((Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin)))
                 {
                     ErrorMessage = "Une séance dans cette salle est déjà prévue à ce créneau horaire";
                     return false;

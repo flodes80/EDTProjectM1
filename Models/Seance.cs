@@ -33,11 +33,11 @@ namespace EDTProjectM1.Models
 
         // Date de la séance
         [Display(Name = "Date de la séance")]
-        [Required]
+        [Required, DateSeance]
         public DateTime DateDebut { get; set; }
 
         // Date de fin la séance
-        public DateTime DateFin 
+        public DateTime DateFin
         {
             get
             {
@@ -47,8 +47,7 @@ namespace EDTProjectM1.Models
 
         // Durée de la séance
         [Display(Name = "Durée séance")]
-        [Range(1, 4, ErrorMessage = "La durée d'une séance doit être comprise entre 1 et 4 heures")]
-        [Required]
+        [Required, DureeSeance]
         public int Duree { get; set; }
 
         // Strings pour affichage FullCalendar
@@ -77,6 +76,36 @@ namespace EDTProjectM1.Models
                 else
                     return "Erreur seance";
             }
+        }
+    }
+
+    internal class DateSeanceAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var seance = (Seance) validationContext.ObjectInstance;
+
+            if (seance.DateDebut.DayOfWeek == DayOfWeek.Saturday || seance.DateDebut.DayOfWeek == DayOfWeek.Sunday)
+            {
+                return new ValidationResult("La séance ne peut avoir lieu qu'en semaine.");
+            }
+
+            return ValidationResult.Success;
+        }
+    }
+
+    internal class DureeSeanceAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var seance = (Seance) validationContext.ObjectInstance;
+
+            if (seance.DateFin.Hour > 20)
+                return new ValidationResult("La séance ne peut dépasser 20h.");
+            else if (seance.Duree <= 0 || seance.Duree > 4)
+                return new ValidationResult("La durée d'une séance doit être comprise entre 1h et 4h.");
+
+            return ValidationResult.Success;
         }
     }
 }

@@ -40,7 +40,7 @@ namespace EDTProjectM1
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid && !IsSeanceValid())
+            if (!ModelState.IsValid || !IsSeanceValid())
             {
                 if (Seance != null)
                     return await OnGetAsync(Seance.ID);
@@ -48,6 +48,11 @@ namespace EDTProjectM1
                     return Page();
             }
 
+            var local = _context.Set<Seance>().Local.FirstOrDefault(entry => entry.ID == Seance.ID);
+            if (local != null)
+            {
+                _context.Entry(local).State = EntityState.Detached;
+            }
             _context.Attach(Seance).State = EntityState.Modified;
 
             try

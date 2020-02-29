@@ -57,4 +57,10 @@
 <div class="text-center">
     <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
 </div>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
+{
+    <div class="alert alert-info col-8" role="alert">
+        En tant que Gestionnaire vous pouvez cliquer sur une séance de l'emploi du temps pour editer les informations.
+    </div>
+}
 <div id='calendar'></div>
