@@ -9,17 +9,19 @@
     <link href='~/lib/fullcalendar/daygrid/main.css' rel='stylesheet' />
     <link href='~/lib/fullcalendar/timegrid/main.css' rel='stylesheet' />
 
+    <script src='~/lib/moment/main.js'></script>
     <script src='~/lib/fullcalendar/core/main.js'></script>
     <script src='~/lib/fullcalendar/daygrid/main.js'></script>
     <script src='~/lib/fullcalendar/timegrid/main.js'></script>
     <script src='~/lib/fullcalendar/moment/main.js'></script>
+    <script src='~/lib/fullcalendar/interaction/main.js'></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                plugins: ['timeGrid'],
+                plugins: ['timeGrid', 'interaction', 'moment'],
                 defaultView: 'timeGridWeek',
                 locale: 'fr',
                 contentHeight: "auto",
@@ -29,12 +31,24 @@
                 minTime: "08:00:00",
                 maxTime: "21:00:00",
                 weekends: false,
-                nowIndicator: true
+                nowIndicator: true,
+                selectable: true,
+                selectAllow: function (selectInfo) {
+                    var momentStart = FullCalendarMoment.toMoment(selectInfo.start, calendar);
+                    var momentEnd = FullCalendarMoment.toMoment(selectInfo.end, calendar);
+                    var duration = FullCalendarMoment.toDuration(momentEnd.diff(momentStart));
+                    return duration.hours() <= 4;
+                },
+                select: function (info) {
+                    dateClickHandler(info)
+                }
             });
 
+            // Chargement de tous les événements
             loadAll(calendar);
         });
 
+        // Fonction permettant de charger tous les séances existantes
         function loadAll(calendar) {
             var currentUrl = window.location.href;
             @foreach (var item in Model.Seances)
@@ -51,6 +65,12 @@
             calendar.render();
         }
 
+        function dateClickHandler(info) {
+            $('#editSeanceModal').modal('show');
+            $('#Seance_DateDebut').attr('value', info.startStr.substring(0, 19));
+            $('#Seance_DateFin').attr('value', info.endStr.substring(0, 19));
+        }
+
     </script>
 }
 
@@ -63,4 +83,22 @@
         En tant que Gestionnaire vous pouvez cliquer sur une séance de l'emploi du temps pour editer les informations.
     </div>
 }
+<!--Div pour affichage de l'edt -->
 <div id='calendar'></div>
+
+<!--Modal pour création-->
+<div class="modal fade" id="editSeanceModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Création séance</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <partial name="_SeanceEditPartial"/>
+            </div>
+        </div>
+    </div>
+</div>

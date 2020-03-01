@@ -10,19 +10,17 @@ using Microsoft.Extensions.Logging;
 
 namespace EDTProjectM1.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : SeanceEditModel
     {
-        private readonly EDTProjectM1.Data.ApplicationDbContext _context;
-
-        public IndexModel(EDTProjectM1.Data.ApplicationDbContext context)
+        public IndexModel(EDTProjectM1.Data.ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public IList<Seance> Seances { get; set; }
 
         public async Task OnGetAsync()
         {
+            CreateViewBags();
             Seances = await _context.Seances
                 .Include(s => s.Groupe)
                 .Include(s => s.Salle)
@@ -30,6 +28,19 @@ namespace EDTProjectM1.Pages
                 .Include(s => s.TypeSeance)
                 .Include(s => s.UE)
                 .ToListAsync();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid || !IsSeanceValid())
+            {
+                return Page();
+            }
+
+            _context.Seances.Add(Seance);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
         }
     }
 }
