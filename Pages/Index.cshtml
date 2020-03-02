@@ -41,6 +41,9 @@
                 },
                 select: function (info) {
                     dateClickHandler(info)
+                },
+                buttonText: {
+                    today: "Aujourd'hui"
                 }
             });
 
@@ -68,14 +71,14 @@
         function dateClickHandler(info) {
             $('#editSeanceModal').modal('show');
             $('#Seance_DateDebut').attr('value', info.startStr.substring(0, 19));
-            $('#Seance_DateFin').attr('value', info.endStr.substring(0, 19));
+            $('#Seance_Duree').attr('value', Math.ceil((info.end - info.start) / 3600000));
         }
 
     </script>
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
+    <h1 class="display-4">Bienvenue, voici l'emploi du temps</h1>
 </div>
 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
 {
