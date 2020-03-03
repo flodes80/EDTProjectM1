@@ -16,7 +16,7 @@
     <!--Input durée séance-->
     <div class="form-group">
         <label asp-for="Seance.Duree" class="control-label"></label>
-        <input asp-for="Seance.Duree" class="form-control" />
+        <input asp-for="Seance.Duree" class="form-control" min="1" max="4" />
         <span asp-validation-for="Seance.Duree" class="text-danger"></span>
     </div>
 

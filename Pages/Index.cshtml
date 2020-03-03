@@ -39,7 +39,7 @@
                     var momentStart = FullCalendarMoment.toMoment(selectInfo.start, calendar);
                     var momentEnd = FullCalendarMoment.toMoment(selectInfo.end, calendar);
                     var duration = FullCalendarMoment.toDuration(momentEnd.diff(momentStart));
-                    return duration.hours() <= 4;
+                    return (duration.hours() < 4 || (duration.hours() == 4 && duration.minutes() == 0));
                 },
                 select: function (info) {
                     selectHandler(info)
