@@ -20,7 +20,10 @@ namespace EDTProjectM1.Pages
 
         public async Task OnGetAsync()
         {
+            // Création des views bags pour modals
             CreateViewBags();
+
+            // Recherche de toutes les séances pour affichage
             Seances = await _context.Seances
                 .Include(s => s.Groupe)
                 .Include(s => s.Salle)
@@ -30,6 +33,12 @@ namespace EDTProjectM1.Pages
                 .ToListAsync();
         }
 
+        public async Task<JsonResult> OnGetSeanceByIdAsync(int seanceID)
+        {
+            Seance = await _context.Seances.FirstOrDefaultAsync(m => m.ID == seanceID);
+            return new JsonResult(Seance);
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid || !IsSeanceValid())
@@ -37,8 +46,38 @@ namespace EDTProjectM1.Pages
                 return Page();
             }
 
-            _context.Seances.Add(Seance);
-            await _context.SaveChangesAsync();
+            // Si création de séance
+            if (Seance.ID == 0)
+            {
+                _context.Seances.Add(Seance);
+                await _context.SaveChangesAsync();
+            }
+            // Sinon mode édition
+            else
+            {
+                var local = _context.Set<Seance>().Local.FirstOrDefault(entry => entry.ID == Seance.ID);
+                if (local != null)
+                {
+                    _context.Entry(local).State = EntityState.Detached;
+                }
+                _context.Attach(Seance).State = EntityState.Modified;
+
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!SeanceExists(Seance.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            }
 
             return RedirectToPage("./Index");
         }

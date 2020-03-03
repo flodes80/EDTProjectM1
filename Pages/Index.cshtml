@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Edit";
 }
 
 @section Header{
@@ -17,10 +17,12 @@
     <script src='~/lib/fullcalendar/interaction/main.js'></script>
 
     <script>
+        var calendarEl, calendar;
         document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
+            calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+            // Génération d'un calendrier
+            calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['timeGrid', 'interaction', 'moment'],
                 defaultView: 'timeGridWeek',
                 locale: 'fr',
@@ -40,7 +42,10 @@
                     return duration.hours() <= 4;
                 },
                 select: function (info) {
-                    dateClickHandler(info)
+                    selectHandler(info)
+                },
+                eventClick: function (info) {
+                    clickHandler(info)
                 }
             });
 
@@ -58,24 +63,60 @@
                         title: '@Html.Raw(@item.TitleFullCalendarFormat)',
                         start: '@item.StartDateFullCalendarFormat',
                         end: '@item.EndDateFullCalendarFormat',
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire")) { <text> url: currentUrl + "Seances/Edit?id=" + @item.ID </text>}
+                        idSeance: '@item.ID'
                         });
                 </text>
             }
+            // Affichage du calendrier
             calendar.render();
         }
 
-        function dateClickHandler(info) {
+        // Handler lors de la sélection d'une date
+        function selectHandler(info) {
+            var momentStart = FullCalendarMoment.toMoment(info.start, calendar);
+            var momentEnd = FullCalendarMoment.toMoment(info.end, calendar);
+            var duration = FullCalendarMoment.toDuration(momentEnd.diff(momentStart));
             $('#editSeanceModal').modal('show');
+
+            // Clear de la modal avant remplissage
+            clearModalData();
+
+            // Remplissage
             $('#Seance_DateDebut').attr('value', info.startStr.substring(0, 19));
-            $('#Seance_DateFin').attr('value', info.endStr.substring(0, 19));
+            $('#Seance_Duree').attr('value', duration.hours());
+        }
+
+        function clickHandler(info) {
+            $('#editSeanceModal').modal('show');
+
+            // Requête ajax pour récupération info séance à partir de l'id
+            $.getJSON(`?handler=SeanceById&seanceID=${info.event.extendedProps.idSeance}`, (data) => {
+                // Remplissage
+                $('#Seance_ID').attr('value', data.id);
+                $('#Seance_DateDebut').attr('value', data.dateDebut);
+                $('#Seance_Duree').attr('value', data.duree);
+                $('#select-ue').attr('value', data.ueId);
+                $('#select-groupes').attr('value', data.groupeId);
+                $('#Seance_SalleId').attr('value', data.salleId);
+                $('#Seance_TypeSeanceId').attr('value', data.typeSeanceId);
+            });
+        }
+
+        function clearModalData() {
+            $('#Seance_ID').attr('value', 0);
+            $('#Seance_DateDebut').attr('value', '');
+            $('#Seance_Duree').attr('value', '');
+            $('#select-ue').attr('value', $("#select-ue option:first").val());
+            $('#select-groupes').attr('value', $("#select-groupes option:first").val());
+            $('#Seance_SalleId').attr('value', $("#Seance_SalleId option:first").val());
+            $('#Seance_TypeSeanceId').attr('value', $("#Seance_TypeSeanceId option:first").val());
         }
 
     </script>
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bienvenue, voici l'emploi du temps:</h1>
+    <h1 class="display-4">Bienvenue, voici l'emploi du temps</h1>
 </div>
 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
 {

@@ -73,10 +73,5 @@ namespace EDTProjectM1
 
             return RedirectToPage("./Index");
         }
-
-        private bool SeanceExists(int id)
-        {
-            return _context.Seances.Any(e => e.ID == id);
-        }
     }
 }

@@ -61,5 +61,10 @@ namespace EDTProjectM1
             ErrorMessage = null;
             return true;
         }
+
+        protected bool SeanceExists(int id)
+        {
+            return _context.Seances.Any(e => e.ID == id);
+        }
     }
 }
