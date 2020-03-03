@@ -34,19 +34,25 @@
                 maxTime: "21:00:00",
                 weekends: false,
                 nowIndicator: true,
-                selectable: true,
-                selectAllow: function (selectInfo) {
-                    var momentStart = FullCalendarMoment.toMoment(selectInfo.start, calendar);
-                    var momentEnd = FullCalendarMoment.toMoment(selectInfo.end, calendar);
-                    var duration = FullCalendarMoment.toDuration(momentEnd.diff(momentStart));
-                    return (duration.hours() < 4 || (duration.hours() == 4 && duration.minutes() == 0));
-                },
-                select: function (info) {
-                    selectHandler(info)
-                },
-                eventClick: function (info) {
-                    clickHandler(info)
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
+                {
+                    <text>
+                    selectable: true,
+                    selectAllow: function (selectInfo) {
+                        var momentStart = FullCalendarMoment.toMoment(selectInfo.start, calendar);
+                        var momentEnd = FullCalendarMoment.toMoment(selectInfo.end, calendar);
+                        var duration = FullCalendarMoment.toDuration(momentEnd.diff(momentStart));
+                        return (duration.hours() @Html.Raw("<") 4 || (duration.hours() == 4 && duration.minutes() == 0));
+                    },
+                    select: function (info) {
+                        selectHandler(info)
+                    },
+                    eventClick: function (info) {
+                        clickHandler(info)
+                    }
+                    </text>  
                 }
+                
             });
 
             // Chargement de tous les événements
