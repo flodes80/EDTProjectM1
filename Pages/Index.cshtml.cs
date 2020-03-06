@@ -43,7 +43,9 @@ namespace EDTProjectM1.Pages
         {
             if (!ModelState.IsValid || !IsSeanceValid())
             {
-                return Page();
+                await OnGetAsync();
+                @ViewData["ErrorModal"] = true;
+                return null;
             }
 
             // Si création de séance

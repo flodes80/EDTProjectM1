@@ -70,8 +70,16 @@
 </form>
 
 <script>
+
     $(function () {
         updateSelectGroupes($("#select-ue").val());
+
+        @if ((bool)ViewData["ErrorModal"])
+        {
+            @: $('form').removeClass('fade');
+            @: $('form').css('display','block');
+            @: $('form').modal('show');
+        }
 
         $("#select-ue").on("change", function () {
             var ueId = $(this).val();

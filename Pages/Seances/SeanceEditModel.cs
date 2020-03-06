@@ -37,6 +37,8 @@ namespace EDTProjectM1
             ViewData["UEs"] = new SelectList(_context.Set<UE>(), "ID", "NomComplet");
             // Récupération des UEs
             ViewData["TypesSeance"] = new SelectList(_context.Set<TypeSeance>(), "ID", "Intitule");
+            // Afficher modal si erreur
+            ViewData["ErrorModal"] = false;
         }
 
         protected bool IsSeanceValid()
