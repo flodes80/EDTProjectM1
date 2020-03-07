@@ -158,6 +158,113 @@ namespace EDTProjectM1.Data.Migrations
                 name: "IX_Seances_UEId",
                 table: "Seances",
                 column: "UEId");
+
+            // Insertion de données de tests
+            // Types Seance
+            migrationBuilder.InsertData(
+                table: "TypesSeance",
+                columns: new[] { "ID", "Intitule" },
+                values: new object[] { 1, "CM" });
+
+            migrationBuilder.InsertData(
+                table: "TypesSeance",
+                columns: new[] { "ID", "Intitule" },
+                values: new object[] { 2, "TD" });
+
+            migrationBuilder.InsertData(
+                table: "TypesSeance",
+                columns: new[] { "ID", "Intitule" },
+                values: new object[] { 3, "TP" });
+
+            // Bâtiments
+            migrationBuilder.InsertData(
+                table: "Batiments",
+                columns: new[] { "ID", "NomBatiment" },
+                values: new object[] { 1, "Bâtiment A" });
+
+            migrationBuilder.InsertData(
+                table: "Batiments",
+                columns: new[] { "ID", "NomBatiment" },
+                values: new object[] { 2, "Bâtiment B" });
+
+            migrationBuilder.InsertData(
+                table: "Batiments",
+                columns: new[] { "ID", "NomBatiment" },
+                values: new object[] { 3, "Bâtiment C" });
+
+            // Salles
+            migrationBuilder.InsertData(
+                table: "Salles",
+                columns: new[] { "ID", "NomSalle", "BatimentId" },
+                values: new object[] { 1, "Salle 01", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Salles",
+                columns: new[] { "ID", "NomSalle", "BatimentId" },
+                values: new object[] { 2, "Salle 02", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Salles",
+                columns: new[] { "ID", "NomSalle", "BatimentId" },
+                values: new object[] { 3, "Salle 10", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Salles",
+                columns: new[] { "ID", "NomSalle", "BatimentId" },
+                values: new object[] { 4, "Salle 11", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Salles",
+                columns: new[] { "ID", "NomSalle", "BatimentId" },
+                values: new object[] { 5, "Salle Co-Working", 3 });
+
+            // UEs
+            migrationBuilder.InsertData(
+                table: "UE",
+                columns: new[] { "ID", "Numero", "Intitule" },
+                values: new object[] { 1, 1, "Informatique" });
+
+            migrationBuilder.InsertData(
+                table: "UE",
+                columns: new[] { "ID", "Numero", "Intitule" },
+                values: new object[] { 2, 2, "Mathématiques" });
+
+            migrationBuilder.InsertData(
+                table: "UE",
+                columns: new[] { "ID", "Numero", "Intitule" },
+                values: new object[] { 3, 3, "Marketing" });
+
+            // Groupes
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 1, "Groupe 1", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 2, "Groupe 2", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 3, "Groupe 1", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 4, "Groupe 2", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 5, "Groupe 1", 3 });
+
+            migrationBuilder.InsertData(
+                table: "Groupes",
+                columns: new[] { "ID", "NomGroupe", "UEId" },
+                values: new object[] { 6, "Groupe 2", 3 });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
