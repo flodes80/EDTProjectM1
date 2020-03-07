@@ -1,86 +1,87 @@
 ﻿@model EDTProjectM1.SeanceEditModel
 
-<form method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    @if (((String)@ViewData["Title"]) == "Edit")
-    {
-        <input type="hidden" asp-for="Seance.ID" />
-    }
-    <!--Input date seance-->
-    <div class="form-group">
-        <label asp-for="Seance.DateDebut" class="control-label"></label>
-        <input asp-for="Seance.DateDebut" class="form-control" />
-        <span asp-validation-for="Seance.DateDebut" class="text-danger"></span>
-    </div>
-
-    <!--Input durée séance-->
-    <div class="form-group">
-        <label asp-for="Seance.Duree" class="control-label"></label>
-        <input asp-for="Seance.Duree" class="form-control" min="1" max="4" />
-        <span asp-validation-for="Seance.Duree" class="text-danger"></span>
-    </div>
-
-    <!--Error msg-->
-    @if (Model.ErrorMessage != null)
-    {
-        <div class="alert alert-danger" role="alert">
-            @Model.ErrorMessage
-        </div>
-    }
-
-    <!--Input UE-->
-    <div class="form-group">
-        <label asp-for="Seance.UE.NomComplet" class="control-label"></label>
-        <select id="select-ue" asp-for="Seance.UEId" class="form-control" asp-items="ViewBag.UEs"></select>
-        <span asp-validation-for="Seance.UEId" class="text-danger"></span>
-    </div>
-
-    <!--Input Groupe-->
-    <div id="form-groupes" class="form-group">
-        <label asp-for="Seance.Groupe.NomGroupe" class="control-label"></label>
-        <select id="select-groupes" asp-for="Seance.GroupeId" class="form-control"></select>
-        <span asp-validation-for="Seance.GroupeId" class="text-danger"></span>
-    </div>
-
-    <!--Input salle séance-->
-    <div class="form-group">
-        <label asp-for="Seance.Salle.NomSalle" class="control-label"></label>
-        <select asp-for="Seance.SalleId" class="form-control" asp-items="ViewBag.Salles"></select>
-        <span asp-validation-for="Seance.SalleId" class="text-danger"></span>
-    </div>
-
-    <!--Input type seance-->
-    <div class="form-group">
-        <label asp-for="Seance.TypeSeance.Intitule" class="control-label"></label>
-        <select asp-for="Seance.TypeSeanceId" class="form-control" asp-items="ViewBag.TypesSeance"></select>
-        <span asp-validation-for="Seance.TypeSeanceId" class="text-danger"></span>
-    </div>
-    @if (((String)@ViewData["Title"]) == "Create")
-    {
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (((String)@ViewData["Title"]) == "Edit" || ((String)@ViewData["Title"]) == "Consult")
+        {
+            <input type="hidden" asp-for="Seance.ID" />
+        }
+        <!--Error msg-->
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+        <!--Input date seance-->
         <div class="form-group">
-            <input type="submit" value="Créer séance" class="btn btn-primary" />
+            <label asp-for="Seance.DateDebut" class="control-label"></label>
+            <input asp-for="Seance.DateDebut" class="form-control" />
+            <span asp-validation-for="Seance.DateDebut" class="text-danger"></span>
         </div>
-    }
-    else
-    {
-        <div class="form-group">
-            <input type="submit" value="Modifier séance" class="btn btn-primary" />
-        </div>
-    }
-</form>
 
-<script>
+        <!--Input durée séance-->
+        <div class="form-group">
+            <label asp-for="Seance.Duree" class="control-label"></label>
+            <input asp-for="Seance.Duree" class="form-control" min="1" max="4" />
+            <span asp-validation-for="Seance.Duree" class="text-danger"></span>
+        </div>
+
+        <!--Input UE-->
+        <div class="form-group">
+            <label asp-for="Seance.UE.NomComplet" class="control-label"></label>
+            <select id="select-ue" asp-for="Seance.UEId" class="form-control" asp-items="ViewBag.UEs"></select>
+            <span asp-validation-for="Seance.UEId" class="text-danger"></span>
+        </div>
+
+        <!--Input Groupe-->
+        <div id="form-groupes" class="form-group">
+            <label asp-for="Seance.Groupe.NomGroupe" class="control-label"></label>
+            <select id="select-groupes" asp-for="Seance.GroupeId" class="form-control"></select>
+            <span asp-validation-for="Seance.GroupeId" class="text-danger"></span>
+        </div>
+
+        <!--Input salle séance-->
+        <div class="form-group">
+            <label asp-for="Seance.Salle.NomSalle" class="control-label"></label>
+            <select asp-for="Seance.SalleId" class="form-control" asp-items="ViewBag.Salles"></select>
+            <span asp-validation-for="Seance.SalleId" class="text-danger"></span>
+        </div>
+
+        <!--Input type seance-->
+        <div class="form-group">
+            <label asp-for="Seance.TypeSeance.Intitule" class="control-label"></label>
+            <select asp-for="Seance.TypeSeanceId" class="form-control" asp-items="ViewBag.TypesSeance"></select>
+            <span asp-validation-for="Seance.TypeSeanceId" class="text-danger"></span>
+        </div>
+        @if (((String)@ViewData["Title"]) == "Create")
+        {
+            <div class="form-group">
+                <input type="submit" value="Créer séance" class="btn btn-primary" />
+            </div>
+        }
+        else
+        {
+    <div class="form-group">
+        <input type="submit" value="Modifier séance" class="btn btn-primary" />
+        <button asp-pag="delete" class="btn btn-danger">Supprimer</button>
+    </div>
+        }
+    </form>
+
+        <script>
 
     $(function () {
+        // Chargement initial des groupes de l'ue par défaut
         updateSelectGroupes($("#select-ue").val());
 
-        @if ((bool)ViewData["ErrorModal"])
+        // Si Erreur dans affichage modal on affiche de nouveau la modal pour montrer erreur
+        @if (((String)@ViewData["Title"]) == "Consult" && TempData["ErrorMessage"] != null)
         {
-            @: $('form').removeClass('fade');
-            @: $('form').css('display','block');
-            @: $('form').modal('show');
+            <text>
+                $('#editSeanceModal').modal('show');
+            </text>
         }
-
         $("#select-ue").on("change", function () {
             var ueId = $(this).val();
             updateSelectGroupes(ueId);
@@ -95,4 +96,4 @@
             });
         });
     }
-</script>
+        </script>

@@ -17,7 +17,6 @@ namespace EDTProjectM1
 
         [BindProperty]
         public Seance Seance { get; set; }
-        public string ErrorMessage { get; set; }
 
         public SeanceEditModel(Data.ApplicationDbContext context)
         {
@@ -37,8 +36,6 @@ namespace EDTProjectM1
             ViewData["UEs"] = new SelectList(_context.Set<UE>(), "ID", "NomComplet");
             // Récupération des UEs
             ViewData["TypesSeance"] = new SelectList(_context.Set<TypeSeance>(), "ID", "Intitule");
-            // Afficher modal si erreur
-            ViewData["ErrorModal"] = false;
         }
 
         protected bool IsSeanceValid()
@@ -47,26 +44,68 @@ namespace EDTProjectM1
              * 1er check:   Existance séance pour le même groupe au même moment
              * 2ème check:  Existance séance dans la même salle au même moment
              * */
+            if (Seance.DateFin.Hour > 21)
+            {
+                TempData["ErrorMessage"] = "Une séance pour un même groupe est déjà prévue à ce créneau horaire";
+                return false;
+            }            
+
             foreach (Seance s in _context.Seances)
             {
                 if (s.ID != Seance.ID && s.GroupeId == Seance.GroupeId && ((Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin)))
                 {
-                    ErrorMessage = "Une séance pour un même groupe est déjà prévue à ce créneau horaire";
+                    TempData["ErrorMessage"] = "Une séance pour un même groupe est déjà prévue à ce créneau horaire";
                     return false;
                 }
                 else if (s.ID != Seance.ID && s.SalleId == Seance.SalleId && ((Seance.DateDebut >= s.DateDebut && Seance.DateDebut < s.DateFin) || (Seance.DateFin > s.DateDebut && Seance.DateFin <= s.DateFin)))
                 {
-                    ErrorMessage = "Une séance dans cette salle est déjà prévue à ce créneau horaire";
+                    TempData["ErrorMessage"] = "Une séance dans cette salle est déjà prévue à ce créneau horaire";
                     return false;
-                }                  
+                }
             }
-            ErrorMessage = null;
+            TempData["ErrorMessage"] = null;
             return true;
         }
 
         protected bool SeanceExists(int id)
         {
             return _context.Seances.Any(e => e.ID == id);
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Seance = await _context.Seances.FindAsync(id);
+
+            if (Seance != null)
+            {
+                _context.Seances.Remove(Seance);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Seance = await _context.Seances.FindAsync(id);
+
+            if (Seance != null)
+            {
+                _context.Seances.Remove(Seance);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }
