@@ -34,6 +34,9 @@
                 maxTime: "21:00:00",
                 weekends: false,
                 nowIndicator: true,
+                buttonText: {
+                    today: "Aujourd'hui"
+                },
                 // Check si l'utilisateur a la la permission de créer/modifier/supprimer des séances
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
                 {
