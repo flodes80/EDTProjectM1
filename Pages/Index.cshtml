@@ -37,6 +37,9 @@
                 buttonText: {
                     today: "Aujourd'hui"
                 },
+                eventRender: function (info) {
+                    $(info.el).tooltip({ title: info.event.title });
+                },
                 // Check si l'utilisateur a la la permission de créer/modifier/supprimer des séances
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
                 {
@@ -56,10 +59,6 @@
                     },
                     </text>
                 }
-                eventMouseEnter: function (info) {
-                    $(info.el).tooltip({ title: info.event.title });
-                },
-
             });
 
             // Chargement de tous les événements
@@ -114,6 +113,7 @@
                 $('#Seance_SalleId').attr('value', data.salleId);
                 $('#Seance_TypeSeanceId').attr('value', data.typeSeanceId);
                 $('#CreateOrEditButton').attr('value', 'Modifier séance');
+                $('#DeleteButton').show();
             });
             // Affichage modal
             $('#editSeanceModal').modal('show');
@@ -129,6 +129,7 @@
             $('#Seance_SalleId').attr('value', $("#Seance_SalleId option:first").val());
             $('#Seance_TypeSeanceId').attr('value', $("#Seance_TypeSeanceId option:first").val());
             $('#CreateOrEditButton').attr('value', 'Créer séance');
+            $('#DeleteButton').hide();
         }
     </script>
 }
