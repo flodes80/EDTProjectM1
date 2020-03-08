@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EDTProjectM1.CreateSeance">
+    <Position X="9.5" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\Seances\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.EditSeance">
+    <Position X="7.25" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Seances\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.SeanceEditModel">
+    <Position X="9.5" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAABAAAAAAAACAAAACAAAAAAAAQAgAAAAA=</HashCode>
+      <FileName>Pages\Seances\SeanceEditModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Pages.IndexModel">
+    <Position X="11.75" Y="13.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAACAAAAAAAggCAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.CreateBatiment">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQEAACAAAA=</HashCode>
+      <FileName>Pages\Batiments\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DeleteBatiment">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAEAACAAAA=</HashCode>
+      <FileName>Pages\Batiments\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DetailsBatiment">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Pages\Batiments\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.EditBatiment">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAEAACAAgA=</HashCode>
+      <FileName>Pages\Batiments\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.IndexBatiment">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Pages\Batiments\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.CreateGroupe">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAAAAAAAAAAAAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\Groupes\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DeleteGroupe">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Groupes\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DetailsGroupe">
+    <Position X="14" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Groupes\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.EditGroupe">
+    <Position X="10.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEABAAAABAAgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Groupes\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.IndexGroupes">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Groupes\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.CreateSalle">
+    <Position X="8.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\Salles\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DeleteSalle">
+    <Position X="12.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Salles\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DetailsSalle">
+    <Position X="14" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Salles\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.EditSalle">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAgAAAAAAAAAAAAAAAgAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\Salles\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.IndexSalles">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\Salles\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DeleteSeance">
+    <Position X="12.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAEAgAAAAA=</HashCode>
+      <FileName>Pages\Seances\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DetailsSeance">
+    <Position X="14" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Pages\Seances\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.IndexSeances">
+    <Position X="7" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAgAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Pages\Seances\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.CreateUEs">
+    <Position X="8.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAAAQEAAAAAAA=</HashCode>
+      <FileName>Pages\UEs\Create.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DeleteUEs">
+    <Position X="12.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEgAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Pages\UEs\Delete.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.DetailsUEs">
+    <Position X="14" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\UEs\Details.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.EditUEs">
+    <Position X="10.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEgAAAAAAAAAAAAAAAAAAAEAAAAAEA=</HashCode>
+      <FileName>Pages\UEs\Edit.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.IndexUEs">
+    <Position X="7" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAEgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Pages\UEs\Index.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

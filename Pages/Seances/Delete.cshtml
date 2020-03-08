@@ -13,6 +13,30 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Seance.UE.NomComplet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Seance.UE.NomComplet)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Seance.TypeSeance.Intitule)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Seance.TypeSeance.Intitule)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Seance.Groupe.NomGroupe)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Seance.Groupe.NomGroupe)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Seance.Salle.NomSalleBatiment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Seance.Salle.NomSalleBatiment)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Seance.DateDebut)
         </dt>
         <dd class="col-sm-10">
@@ -22,13 +46,13 @@
             @Html.DisplayNameFor(model => model.Seance.Duree)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Seance.Duree)
+            @Html.DisplayFor(model => model.Seance.Duree)  h
         </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Seance.ID" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+        <a asp-page="./Index">Retourner à la liste des Séances</a>
     </form>
 </div>
