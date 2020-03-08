@@ -47,49 +47,64 @@ namespace EDTProjectM1.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid || !IsSeanceValid())
+            // Si requête de suppression
+            if (Request.Form["Supprimer"].Count > 0)
             {
-                if ((string)ViewData["Title"] == "Consult")
+                if (Seance == null || Seance.ID == 0)
                 {
-                    SaveModelError();
+                    return NotFound();
                 }
-                
+
+                _context.Seances.Remove(Seance);
+                await _context.SaveChangesAsync();
             }
+            // Sinon modification / création
             else
             {
-                // Si création de séance
-                if (Seance.ID == 0)
+                if (!ModelState.IsValid || !IsSeanceValid())
                 {
-                    _context.Seances.Add(Seance);
-                    await _context.SaveChangesAsync();
+                    if ((string)ViewData["Title"] == "Consult")
+                    {
+                        SaveModelError();
+                    }
+
                 }
-                // Sinon mode édition
                 else
                 {
-                    var local = _context.Set<Seance>().Local.FirstOrDefault(entry => entry.ID == Seance.ID);
-                    if (local != null)
+                    // Si création de séance
+                    if (Seance.ID == 0)
                     {
-                        _context.Entry(local).State = EntityState.Detached;
-                    }
-                    _context.Attach(Seance).State = EntityState.Modified;
-
-                    try
-                    {
+                        _context.Seances.Add(Seance);
                         await _context.SaveChangesAsync();
                     }
-                    catch (DbUpdateConcurrencyException)
+                    // Sinon mode édition
+                    else
                     {
-                        if (!SeanceExists(Seance.ID))
+                        var local = _context.Set<Seance>().Local.FirstOrDefault(entry => entry.ID == Seance.ID);
+                        if (local != null)
                         {
-                            return NotFound();
+                            _context.Entry(local).State = EntityState.Detached;
                         }
-                        else
+                        _context.Attach(Seance).State = EntityState.Modified;
+
+                        try
                         {
-                            throw;
+                            await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateConcurrencyException)
+                        {
+                            if (!SeanceExists(Seance.ID))
+                            {
+                                return NotFound();
+                            }
+                            else
+                            {
+                                throw;
+                            }
                         }
                     }
                 }
-            }
+            }           
             return RedirectToPage("./Index");
         }
         

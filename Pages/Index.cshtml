@@ -34,6 +34,7 @@
                 maxTime: "21:00:00",
                 weekends: false,
                 nowIndicator: true,
+                // Check si l'utilisateur a la la permission de créer/modifier/supprimer des séances
                 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
                 {
                     <text>
@@ -50,9 +51,9 @@
                     eventClick: function (info) {
                         clickHandler(info)
                     }
-                    </text>  
+                    </text>
                 }
-                
+
             });
 
             // Chargement de tous les événements
@@ -68,7 +69,10 @@
                         title: '@Html.Raw(@item.TitleFullCalendarFormat)',
                         start: '@item.StartDateFullCalendarFormat',
                         end: '@item.EndDateFullCalendarFormat',
-                        idSeance: '@item.ID'
+                        idSeance: '@item.ID',
+                        @if(item.TypeSeance.Intitule == "CM") { <text>color: 'blue'</text>}
+                        @if(item.TypeSeance.Intitule == "TD") { <text>color: 'green'</text>}
+                        @if(item.TypeSeance.Intitule == "TP") { <text>color: 'orange'</text>}
                         });
                 </text>
             }
@@ -91,9 +95,8 @@
             $('#Seance_Duree').attr('value', duration.hours());
         }
 
+        // Handler lors d'un clic sur une séance
         function clickHandler(info) {
-            $('#editSeanceModal').modal('show');
-
             // Requête ajax pour récupération info séance à partir de l'id
             $.getJSON(`?handler=SeanceById&seanceID=${info.event.extendedProps.idSeance}`, (data) => {
                 // Remplissage
@@ -104,9 +107,13 @@
                 $('#select-groupes').attr('value', data.groupeId);
                 $('#Seance_SalleId').attr('value', data.salleId);
                 $('#Seance_TypeSeanceId').attr('value', data.typeSeanceId);
+                $('#CreateOrEditButton').attr('value', 'Modifier séance');
             });
+            // Affichage modal
+            $('#editSeanceModal').modal('show');
         }
 
+        // Clear des champs pour création d'une séance
         function clearModalData() {
             $('#Seance_ID').attr('value', 0);
             $('#Seance_DateDebut').attr('value', '');
@@ -115,8 +122,8 @@
             $('#select-groupes').attr('value', $("#select-groupes option:first").val());
             $('#Seance_SalleId').attr('value', $("#Seance_SalleId option:first").val());
             $('#Seance_TypeSeanceId').attr('value', $("#Seance_TypeSeanceId option:first").val());
+            $('#CreateOrEditButton').attr('value', 'Créer séance');
         }
-
     </script>
 }
 
@@ -126,7 +133,7 @@
 @if (User.Identity.IsAuthenticated && User.IsInRole("Gestionnaire"))
 {
     <div class="alert alert-info col-8" role="alert">
-        En tant que Gestionnaire vous pouvez cliquer sur une séance de l'emploi du temps pour editer les informations.
+        En tant que Gestionnaire vous pouvez cliquer sur une séance de l'emploi du temps pour editer les informations ou en créer une en sélectionnant un créneau.
     </div>
 }
 <!--Div pour affichage de l'edt -->

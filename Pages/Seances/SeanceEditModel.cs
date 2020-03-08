@@ -71,41 +71,5 @@ namespace EDTProjectM1
         {
             return _context.Seances.Any(e => e.ID == id);
         }
-
-        public async Task<IActionResult> OnPostAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Seance = await _context.Seances.FindAsync(id);
-
-            if (Seance != null)
-            {
-                _context.Seances.Remove(Seance);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
-        }
-
-        public async Task<IActionResult> OnPostDeleteAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Seance = await _context.Seances.FindAsync(id);
-
-            if (Seance != null)
-            {
-                _context.Seances.Remove(Seance);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToPage("./Index");
-        }
     }
 }
