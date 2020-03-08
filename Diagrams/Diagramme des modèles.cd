@@ -1,2 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EDTProjectM1.Models.Batiment">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Batiment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.Groupe">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAIAAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Models\Groupe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.Salle">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAABAAAAAAAgAAAAAAgAAAAAAAAAAAAAAAAAACAAAI=</HashCode>
+      <FileName>Models\Salle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.Seance">
+    <Position X="16.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEIACAAAgBEAACIAIAAAAAAAgAAAIAgAAQAAGAA=</HashCode>
+      <FileName>Models\Seance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.DateSeanceAttribute">
+    <Position X="18" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Seance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.TypeSeance">
+    <Position X="11" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TypeSeance.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.UE">
+    <Position X="14.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAiAAAAAAAAgAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Models\UE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
