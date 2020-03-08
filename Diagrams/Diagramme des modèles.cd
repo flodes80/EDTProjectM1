@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EDTProjectM1.Models.DateSeanceAttribute">
-    <Position X="18" Y="1.25" Width="1.5" />
+    <Position X="18" Y="1.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Seance.cs</FileName>
@@ -47,6 +47,13 @@
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAiAAAAAAAAgAAAAAAAAAAAAAAAAABAAA=</HashCode>
       <FileName>Models\UE.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EDTProjectM1.Models.DureeSeanceAttribute">
+    <Position X="18" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Seance.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
