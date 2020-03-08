@@ -50,9 +50,12 @@
                     },
                     eventClick: function (info) {
                         clickHandler(info)
-                    }
+                    },
                     </text>
                 }
+                eventMouseEnter: function (info) {
+                    $(info.el).tooltip({ title: info.event.title });
+                },
 
             });
 
@@ -70,9 +73,9 @@
                         start: '@item.StartDateFullCalendarFormat',
                         end: '@item.EndDateFullCalendarFormat',
                         idSeance: '@item.ID',
-                        @if(item.TypeSeance.Intitule == "CM") { <text>color: 'blue'</text>}
-                        @if(item.TypeSeance.Intitule == "TD") { <text>color: 'green'</text>}
-                        @if(item.TypeSeance.Intitule == "TP") { <text>color: 'orange'</text>}
+                        @if(item.TypeSeance.Intitule == "CM") { <text>color: '#bfdeff'</text>}
+                        @if(item.TypeSeance.Intitule == "TD") { <text>color: '#e3ffbf'</text>}
+                        @if(item.TypeSeance.Intitule == "TP") { <text>color: '#ffe8bf'</text>}
                         });
                 </text>
             }
